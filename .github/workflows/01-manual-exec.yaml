@@ -42,3 +42,12 @@ jobs:
             # executar os testes e2e
             - name: Executando testes e2e
               run: yarn run e2e
+            
+            #  NOVO: Publicar relatório dos testes
+            - name: Test Report
+              uses: dorny/test-reporter@v1
+              if: always()
+              with:
+                  name: E2E Test Results
+                  path: 'test-results/*.xml'
+                  reporter: 'jest-junit'
